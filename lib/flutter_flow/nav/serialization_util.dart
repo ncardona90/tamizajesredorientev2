@@ -3,6 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 
+import '/backend/schema/enums/enums.dart';
+
+import '/backend/sqlite/queries/sqlite_row.dart';
+import '/backend/sqlite/queries/read.dart';
 import '../../flutter_flow/lat_lng.dart';
 import '../../flutter_flow/place.dart';
 import '../../flutter_flow/uploaded_file.dart';
@@ -69,6 +73,12 @@ String? serializeParam(
         data = uploadedFileToString(param as FFUploadedFile);
       case ParamType.JSON:
         data = json.encode(param);
+
+      case ParamType.Enum:
+        data = (param is Enum) ? param.serialize() : null;
+
+      case ParamType.SqliteRow:
+        return json.encode((param as SqliteRow).data);
 
       default:
         data = null;
@@ -145,6 +155,10 @@ enum ParamType {
   FFPlace,
   FFUploadedFile,
   JSON,
+
+  Enum,
+
+  SqliteRow,
 }
 
 dynamic deserializeParam<T>(
@@ -195,6 +209,18 @@ dynamic deserializeParam<T>(
         return uploadedFileFromString(param);
       case ParamType.JSON:
         return json.decode(param);
+
+      case ParamType.Enum:
+        return deserializeEnum<T>(param);
+
+      case ParamType.SqliteRow:
+        final data = json.decode(param) as Map<String, dynamic>;
+        switch (T) {
+          case LeerRow:
+            return LeerRow(data);
+          default:
+            return null;
+        }
 
       default:
         return null;
