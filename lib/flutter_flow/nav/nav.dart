@@ -35,27 +35,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => ComponentWidget(),
+      errorBuilder: (context, state) => ListWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => ComponentWidget(),
+          builder: (context, _) => ListWidget(),
         ),
         FFRoute(
-          name: DpWidget.routeName,
-          path: DpWidget.routePath,
-          builder: (context, params) => DpWidget(
-            fechanacimiento: params.getParam(
-              'fechanacimiento',
-              ParamType.DateTime,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: ComponentWidget.routeName,
-          path: ComponentWidget.routePath,
-          builder: (context, params) => ComponentWidget(),
+          name: ListWidget.routeName,
+          path: ListWidget.routePath,
+          builder: (context, params) => ListWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
