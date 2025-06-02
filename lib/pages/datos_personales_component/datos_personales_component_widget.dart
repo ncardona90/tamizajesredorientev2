@@ -4,10 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'datos_personales_component_model.dart';
 export 'datos_personales_component_model.dart';
 
@@ -83,43 +86,43 @@ class _DatosPersonalesComponentWidgetState
     _model = createModel(context, () => DatosPersonalesComponentModel());
 
     _model.nombresTextFieldTextController ??=
-        TextEditingController(text: widget.nombres);
+        TextEditingController(text: widget!.nombres);
     _model.nombresTextFieldFocusNode ??= FocusNode();
 
     _model.apellidosTextFieldTextController ??=
-        TextEditingController(text: widget.apellidos);
+        TextEditingController(text: widget!.apellidos);
     _model.apellidosTextFieldFocusNode ??= FocusNode();
 
     _model.numeroDocumentoTextFieldTextController ??=
-        TextEditingController(text: widget.numerodocumento?.toString());
+        TextEditingController(text: widget!.numerodocumento?.toString());
     _model.numeroDocumentoTextFieldFocusNode ??= FocusNode();
 
     _model.nacionalidadColumnTextFieldTextController ??=
-        TextEditingController(text: widget.nacionalidad);
+        TextEditingController(text: widget!.nacionalidad);
     _model.nacionalidadColumnTextFieldFocusNode ??= FocusNode();
 
     _model.edadTextFieldTextController ??=
-        TextEditingController(text: widget.edad?.toString());
+        TextEditingController(text: widget!.edad?.toString());
     _model.edadTextFieldFocusNode ??= FocusNode();
 
     _model.direccionResidenciaTextFieldTextController ??=
-        TextEditingController(text: widget.direccionresidencia);
+        TextEditingController(text: widget!.direccionresidencia);
     _model.direccionResidenciaTextFieldFocusNode ??= FocusNode();
 
     _model.barrioTextFieldTextController ??=
-        TextEditingController(text: widget.barrio);
+        TextEditingController(text: widget!.barrio);
     _model.barrioTextFieldFocusNode ??= FocusNode();
 
     _model.comunaTextFieldTextController ??=
-        TextEditingController(text: widget.comuna?.toString());
+        TextEditingController(text: widget!.comuna?.toString());
     _model.comunaTextFieldFocusNode ??= FocusNode();
 
     _model.telefonoTextFieldTextController ??=
-        TextEditingController(text: widget.telefonocontacto?.toString());
+        TextEditingController(text: widget!.telefonocontacto?.toString());
     _model.telefonoTextFieldFocusNode ??= FocusNode();
 
     _model.correoElectronicoTextFieldTextController ??=
-        TextEditingController(text: widget.correoelectronico);
+        TextEditingController(text: widget!.correoelectronico);
     _model.correoElectronicoTextFieldFocusNode ??= FocusNode();
   }
 
@@ -469,7 +472,7 @@ class _DatosPersonalesComponentWidgetState
                                       .tipoDocumentoDropDownValueController ??=
                                   FormFieldController<String>(
                                 _model.tipoDocumentoDropDownValue ??=
-                                    widget.tipodoc,
+                                    widget!.tipodoc,
                               ),
                               options: List<String>.from(
                                   Tipodoc.values.map((e) => e.name).toList()),
@@ -1091,7 +1094,7 @@ class _DatosPersonalesComponentWidgetState
                                       .gemneroBiologicoDropDownValueController ??=
                                   FormFieldController<String>(
                                 _model.gemneroBiologicoDropDownValue ??=
-                                    widget.genero,
+                                    widget!.genero,
                               ),
                               options: <String>[],
                               onChanged: (val) => safeSetState(() =>
